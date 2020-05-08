@@ -30,7 +30,7 @@
 #-keepattributes Signature
 
 #保持BuildConfig不被混淆(因为混淆之后就无法在导出jar时排除该类)
-#-keep class com.asiainfo.sycmss.BuildConfig{
+#-keep class com.njfu.yxcmc.BuildConfig{
 #    public *;
 #}
 
@@ -186,7 +186,7 @@
     public void *(android.webkit.webView, jav.lang.String);
 }
 
--keepclassmembers class com.asiainfo.sycmss.module.webview.WebHost {
+-keepclassmembers class com.njfu.yxcmc.module.webview.WebHost {
   public *;
 }
 

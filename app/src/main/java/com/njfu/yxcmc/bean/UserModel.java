@@ -3,6 +3,9 @@ package com.njfu.yxcmc.bean;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 所有实体类切记一定要序列化，不然gson无法识别
+ */
 public class UserModel implements Serializable {
 
     /**
