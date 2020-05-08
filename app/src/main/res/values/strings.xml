@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">QuickMvp</string>
+
+    <string name="logining">正在登录</string>
+    <string name="progress_please_wait">请等待...</string>
+
+    <string name="netError_httpResponseError">网络错误</string>
+    <string name="netError_connectionTimeout">网络连接超时</string>
+    <string name="netError_httpsHandshakeFailed">SSL证书错误</string>
+    <string name="netError_parseJsonException">数据解析错误</string>
+    <string name="netError_connectionDenied">不允许连接</string>
+    <string name="netError_connectionRefused">服务端拒绝连接</string>
+    <string name="netError_noConnection">无网络连接</string>
+    <string name="netError_unknown">未知错误</string>
+
+</resources>

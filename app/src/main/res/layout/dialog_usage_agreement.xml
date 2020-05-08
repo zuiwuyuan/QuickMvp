@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/dp_16"
+    android:background="@drawable/shape_radius_dialog_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitleInMyAlert"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@drawable/shape_agreement_dialog_title_bg"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_12"
+        android:text="取消"
+        android:textColor="#FFF"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvMessageInMyAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_12"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/dp_64"
+        android:textColor="#666666"
+        android:textSize="@dimen/sp_14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginRight="@dimen/dp_12"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你可以查看完整版"
+            android:textColor="#888"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:id="@+id/tvHyperlink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="客户信息保护政策公告"
+            android:textColor="#00C0FF"
+            android:textSize="@dimen/sp_12" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:layout_margin="@dimen/dp_12"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnLeftInMyAlert"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_cancel"
+            android:text="取消"
+            android:textColor="#25a8ff"
+            android:textSize="@dimen/sp_16" />
+
+        <Button
+            android:id="@+id/btnRightInMyAlert"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_weight="1"
+            android:background="@drawable/button_sure"
+            android:text="确定"
+            android:textColor="#FFF"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+
+</LinearLayout>

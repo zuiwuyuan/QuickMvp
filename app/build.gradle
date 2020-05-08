@@ -1,0 +1,124 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    compileOptions {
+        encoding "UTF-8"
+    }
+    defaultConfig {
+        applicationId "com.njfu.yxcmc"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'sign.keystore'
+            keyPassword 'sign2020'
+            storeFile file('sign.keystore')
+            storePassword 'sign2020'
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+
+    applicationVariants.all {
+        //判断是release还是debug版本
+        def buildType = it.buildType.name
+        if (buildType == "debug") {
+            // 集成环境需要原始名称
+            return
+        }
+        def fileName
+        //获取当前时间的"YYYY-MM-dd"格式。
+        def createTime = new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+08:00"))
+        it.outputs.each {
+            fileName = "SUYAN_CMSS_${buildType}_${defaultConfig.versionName}_${defaultConfig.versionCode}_${createTime}.apk"
+            it.outputFileName = fileName
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.dependencies["appcompat"]
+    implementation rootProject.ext.dependencies["constraintlayout"]
+
+    //butterknife
+    implementation rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+
+    //okhttp3
+    implementation rootProject.ext.dependencies["okhttp"]
+    implementation rootProject.ext.dependencies["okhttp-logging-interceptor"]
+
+    //retrofit2
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofit-converter-gson"]
+    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+
+    //rxjava2
+    implementation rootProject.ext.dependencies["rxjava"]
+    implementation rootProject.ext.dependencies["rxandroid"]
+    implementation rootProject.ext.dependencies["rxpermissions"]
+    implementation rootProject.ext.dependencies["rxbinding3"]
+    implementation rootProject.ext.dependencies["rxrelay2"]//rxbus使用
+    implementation rootProject.ext.dependencies["rx2-android-networking"]
+
+    //AutoDispose解决RxJava内存泄漏
+    api rootProject.ext.dependencies["autodispose"]
+    api rootProject.ext.dependencies["autodispose-android"]
+    api rootProject.ext.dependencies["autodispose-android-archcomponents"]
+
+    //glide
+    implementation rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    implementation rootProject.ext.dependencies["glide-okhttp3-integration"]
+    implementation rootProject.ext.dependencies["glide-transformations"]
+
+    //immersionbar
+    implementation rootProject.ext.dependencies["immersionbar"]
+    implementation rootProject.ext.dependencies["immersionbar-components"]
+
+    implementation rootProject.ext.dependencies["material-dialogs"]
+    implementation rootProject.ext.dependencies["adapterhelper"]
+    implementation rootProject.ext.dependencies["logger"]
+//    implementation rootProject.ext.dependencies["multidex"]
+
+//    implementation rootProject.ext.dependencies["smartrefresh"]
+//    implementation rootProject.ext.dependencies["smartrefresh-header"]
+
+//    implementation rootProject.ext.dependencies["arouter"]
+//    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    //leakcanary
+//    debugApi rootProject.ext.dependencies["leakcanary-android"]
+//    releaseApi rootProject.ext.dependencies["leakcanary-android-no-op"]
+}

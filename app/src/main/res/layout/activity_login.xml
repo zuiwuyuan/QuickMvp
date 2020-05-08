@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_120"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:src="@mipmap/ic_launcher_logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/app_name"
+        android:textColor="@color/themeColorPressed"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_42"
+        android:layout_marginTop="@dimen/dp_42"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etPhoneNum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入用户名"
+            android:imeOptions="actionNext"
+            android:letterSpacing="0.2"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#BAC2D1"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgPhoneNumDelete"
+            android:layout_width="@dimen/dp_16"
+            android:layout_height="@dimen/dp_16"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_login_delete" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_1"
+        android:background="#DBDFE1" />
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_42"
+        android:layout_marginTop="@dimen/dp_6"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etIdCardCode"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入密码"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:letterSpacing="0.2"
+            android:maxLength="18"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#BAC2D1"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgIdCardCodeDelete"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_login_delete" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_1"
+        android:background="#DBDFE1" />
+
+    <TextView
+        android:id="@+id/tvBtnLogin"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/page_title_height"
+        android:background="@drawable/selector_theme_big_btn_bg"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="#FFF"
+        android:textSize="@dimen/sp_18" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
+
+</LinearLayout>

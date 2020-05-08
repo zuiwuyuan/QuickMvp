@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="activity_bg" type="drawable">#F5F5F5</item>
+    <item name="default_banner_bg" type="drawable">#F5F5F5</item>
+</resources>

@@ -1,0 +1,39 @@
+<resources>
+
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@android:color/white</item>
+
+    </style>
+
+    <style name="MyAppTheme.SplashPageTheme">
+
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowDisablePreview">true</item>
+
+    </style>
+
+    <style name="BaseCompatTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <!-- 应用弹框风格 -->
+    <style name="prompt_style" parent="@android:style/Theme.Panel">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!-- 应用加载弹框风格 -->
+    <style name="prompt_loading_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+</resources>

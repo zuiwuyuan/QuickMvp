@@ -1,0 +1,93 @@
+ext {
+    // https://juejin.im/post/5c80d817e51d4541ea7202a1
+    android = [
+            compileSdkVersion: 29,
+            buildToolsVersion: '29.0.3',
+            applicationId    : "com.asiainfo.sycmss",
+            minSdkVersion    : 17,
+            targetSdkVersion : 29,
+            versionCode      : 3,
+            versionName      : "1.0.2"
+    ]
+
+    def dependVersion = [
+            support         : "1.1.0",
+            constraintlayout: "1.1.3",
+            retrofit        : "2.7.2",
+            okhttp          : "3.10.0",
+            rxandroid       : "2.1.1",
+            rxjava          : "2.2.11",
+            rxpermissions   : "0.10.2",
+            butterknife     : "10.2.1",
+            autodispose     : "0.8.0",
+            glide           : "4.11.0",
+            leakcanary      : "1.6.2",
+            smartrefresh    : "1.1.2",
+            immersionbar    : "3.0.0"
+    ]
+
+    dependencies = [
+            //base
+            "appcompat"                         : "androidx.appcompat:appcompat:${dependVersion.support}",
+            "recyclerview"                      : "androidx.recyclerview:recyclerview:${dependVersion.support}",
+            "constraintlayout"                  : "androidx.constraintlayout:constraintlayout:${dependVersion.constraintlayout}",
+
+            //rx
+            "rxjava"                            : "io.reactivex.rxjava2:rxjava:${dependVersion.rxjava}",
+            "rxandroid"                         : "io.reactivex.rxjava2:rxandroid:${dependVersion.rxandroid}",
+            "rxpermissions"                     : "com.github.tbruyelle:rxpermissions:${dependVersion.rxpermissions}",
+            "rxbinding3"                        : "com.jakewharton.rxbinding3:rxbinding:3.1.0",
+            "rxrelay2"                          : "com.jakewharton.rxrelay2:rxrelay:2.0.0",
+            "rx2-android-networking"            : "com.amitshekhar.android:rx2-android-networking:1.0.2",
+
+            //autodispose
+            "autodispose"                       : "com.uber.autodispose:autodispose:${dependVersion.autodispose}",
+            "autodispose-android"               : "com.uber.autodispose:autodispose-android:${dependVersion.autodispose}",
+            "autodispose-android-archcomponents": "com.uber.autodispose:autodispose-android-archcomponents:${dependVersion.autodispose}",
+
+            //network
+            "retrofit"                          : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit}",
+            "retrofit-converter-gson"           : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofit}",
+            "retrofit-adapter-rxjava2"          : "com.squareup.retrofit2:adapter-rxjava2:${dependVersion.retrofit}",
+
+            "okhttp"                            : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp}",
+            "okhttp-logging-interceptor"        : "com.squareup.okhttp3:logging-interceptor:${dependVersion.okhttp}",
+
+            "glide"                             : "com.github.bumptech.glide:glide:${dependVersion.glide}",
+            "glide-compiler"                    : "com.github.bumptech.glide:compiler:${dependVersion.glide}",
+            "glide-okhttp3-integration"         : "com.github.bumptech.glide:okhttp3-integration:4.3.1",
+            "glide-transformations"             : "jp.wasabeef:glide-transformations:1.2.1",
+
+            //di
+            "butterknife"                       : "com.jakewharton:butterknife:${dependVersion.butterknife}",
+            "butterknife-compiler"              : "com.jakewharton:butterknife-compiler:${dependVersion.butterknife}",
+
+            //immersionbar
+            "immersionbar"                      : "com.gyf.immersionbar:immersionbar:${dependVersion.immersionbar}",
+            "immersionbar-components"           : "com.gyf.immersionbar:immersionbar-components:${dependVersion.immersionbar}",
+
+            //smartrefresh
+            "smartrefresh"                      : "com.scwang.smartrefresh:SmartRefreshLayout:${dependVersion.smartrefresh}",
+            "smartrefresh-header"               : "com.scwang.smartrefresh:SmartRefreshHeader:${dependVersion.smartrefresh}",
+
+            //canary
+            "leakcanary-android"                : "com.squareup.leakcanary:leakcanary-android:${dependVersion.leakcanary}",
+            "leakcanary-android-no-op"          : "com.squareup.leakcanary:leakcanary-android-no-op:${dependVersion.leakcanary}",
+
+            //ui
+            "material-dialogs"                  : "com.afollestad.material-dialogs:core:0.9.6.0",
+            "adapterhelper"                     : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50",
+            "photoview"                         : "com.github.chrisbanes:PhotoView:2.3.0",
+            "gif"                               : "pl.droidsonroids.gif:android-gif-drawable:1.2.3",//一个开源gif控件
+            "circleimageview"                   : "de.hdodenhof:circleimageview:3.1.03",
+            "agentweb"                          : "com.just.agentweb:agentweb:4.1.3",
+
+            //other
+            "luban"                             : "top.zibin:Luban:1.1.8",//图片压缩
+            "arouter"                           : "com.alibaba:arouter-api:1.4.1",
+            "arouter-compiler"                  : "com.alibaba:arouter-compiler:1.2.2",
+            "multidex"                          : "com.android.support:multidex:1.0.3",
+            "logger"                            : "com.apkfuns.logutils:library:1.5.1.1"
+
+    ]
+}

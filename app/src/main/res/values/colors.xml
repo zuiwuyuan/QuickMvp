@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3B9EFF</color>
+    <color name="colorPrimaryDark">#4080FF</color>
+    <color name="colorAccent">#6ABAFF</color>
+
+    <color name="themeColor">#3B9EFF</color>
+    <color name="themeColorPressed">#4080FF</color>
+    <color name="themeColorDisable">#6ABAFF</color>
+
+    <color name="themePageBgColor">#FFF5F5F5</color>
+
+    <color name="themeDividerColor">#F0F0F0</color>
+
+    <!--选择框按钮颜色-->
+    <color name="selector_button">#4080FF</color>
+    <!--时间选择框两条分割线颜色-->
+    <color name="province_line_border">#4080FF</color>
+
+</resources>
