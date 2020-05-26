@@ -71,6 +71,12 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!-- 全局Context提供者 -->
+        <provider
+            android:name=".provider.ApplicationContextProvider"
+            android:authorities="${applicationId}.contextprovider"
+            android:exported="false" />
+
     </application>
 
 
