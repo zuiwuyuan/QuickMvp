@@ -116,19 +116,19 @@ public class AES256Help{
         return result;
 
     }
-    public static void main(String[] args) throws UnsupportedEncodingException{
-
-        String str="你好中国ABCabc123";
-        //System.out.println("原文："+str);
-        String key="12345678901234567890123456789012";
-        try {
-            String x = AES256Help.encrypt(str, key);
-            //System.out.print("加密后："+x);
-            //System.out.print("\n");
-            //System.out.println("解密后："+AES256Help.decrypt(x, key));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) throws UnsupportedEncodingException{
+//
+//        String str="你好中国ABCabc123";
+//        //System.out.println("原文："+str);
+//        String key="12345678901234567890123456789012";
+//        try {
+//            String x = AES256Help.encrypt(str, key);
+//            //System.out.print("加密后："+x);
+//            //System.out.print("\n");
+//            //System.out.println("解密后："+AES256Help.decrypt(x, key));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
 

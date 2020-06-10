@@ -8,6 +8,7 @@ public class ContextProvider {
 
     @SuppressLint("StaticFieldLeak")
     private static volatile ContextProvider instance;
+
     private Context mContext;
 
     private ContextProvider(Context context) {

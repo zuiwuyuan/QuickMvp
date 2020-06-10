@@ -73,6 +73,7 @@ dependencies {
 
     //butterknife
     implementation rootProject.ext.dependencies["butterknife"]
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 
     //okhttp3
