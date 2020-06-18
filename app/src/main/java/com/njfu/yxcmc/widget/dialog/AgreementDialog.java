@@ -130,7 +130,7 @@ public class AgreementDialog extends AlertDialog implements OnClickListener {
                 }
                 break;
             }
-            case R.id.tvHyperlink:{
+            case R.id.tvHyperlink: {
                 if (mCallback != null) {
                     mCallback.onTvHyperlinkClick(this);
                 }

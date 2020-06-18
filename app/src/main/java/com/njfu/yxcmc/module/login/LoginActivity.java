@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import com.gyf.immersionbar.ImmersionBar;
 import com.njfu.yxcmc.R;
 import com.njfu.yxcmc.base.BaseMvpActivity;
-import com.njfu.yxcmc.base.GloabApp;
+import com.njfu.yxcmc.base.GlobalApp;
 import com.njfu.yxcmc.bean.UserModel;
 import com.njfu.yxcmc.common.CmssSharedPreferences;
 import com.njfu.yxcmc.common.GlobalField;
@@ -83,8 +83,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
         etPhoneNum.setText("zuiwuyuan");
         etIdCardCode.setText("123456");
 
-        mSharedPref = GloabApp.getInstance().getPrefs();
-        myGlobalField = GloabApp.getInstance().getGlobalField();
+        mSharedPref = GlobalApp.getInstance().getPrefs();
+        myGlobalField = GlobalApp.getInstance().getGlobalField();
 
 
         mPresenter = new LoginPresenter(this);

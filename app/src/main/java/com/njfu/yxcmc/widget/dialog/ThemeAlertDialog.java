@@ -17,10 +17,10 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.njfu.yxcmc.R;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-
-import com.njfu.yxcmc.R;
 
 
 public class ThemeAlertDialog extends AlertDialog implements OnClickListener {
@@ -32,10 +32,10 @@ public class ThemeAlertDialog extends AlertDialog implements OnClickListener {
     private TextView tvTitle, tvMessage;
     private View verticalDividerInBtns;
 
-    public interface OnAlertAction {
-        void onLeftClick();
-
-        void onRightClick();
+    public ThemeAlertDialog(Context context, MyBuilder builder, Callback callback) {
+        super(context);
+        this.mBuilder = builder;
+        this.mCallback = callback;
     }
 
     public static void showAlert(Activity activity, String alertContent) {
@@ -69,12 +69,6 @@ public class ThemeAlertDialog extends AlertDialog implements OnClickListener {
         });
         dialog.setCancelable(isCancelable);
         dialog.show();
-    }
-
-    public ThemeAlertDialog(Context context, MyBuilder builder, Callback callback) {
-        super(context);
-        this.mBuilder = builder;
-        this.mCallback = callback;
     }
 
     @Override
@@ -172,6 +166,12 @@ public class ThemeAlertDialog extends AlertDialog implements OnClickListener {
         tvTitle.setOnClickListener(listener);
     }
 
+    public interface OnAlertAction {
+        void onLeftClick();
+
+        void onRightClick();
+    }
+
     public interface Callback {
         void onLeftBtnClick(ThemeAlertDialog dialog);
 
@@ -228,12 +228,12 @@ public class ThemeAlertDialog extends AlertDialog implements OnClickListener {
             this.rightBtnText = rightBtnText;
         }
 
-        public void setMessageTextSelectable(boolean messageTextSelectable) {
-            isMessageTextSelectable = messageTextSelectable;
-        }
-
         public boolean isMessageTextSelectable() {
             return isMessageTextSelectable;
+        }
+
+        public void setMessageTextSelectable(boolean messageTextSelectable) {
+            isMessageTextSelectable = messageTextSelectable;
         }
 
         public int getMsgContentGravity() {

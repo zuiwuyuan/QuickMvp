@@ -2,7 +2,6 @@ package com.njfu.yxcmc.common;
 
 import android.content.Context;
 
-import com.njfu.yxcmc.util.FileUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.Registry;
@@ -14,6 +13,7 @@ import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.AppGlideModule;
+import com.njfu.yxcmc.util.FileUtils;
 
 import java.io.File;
 import java.io.InputStream;
@@ -30,7 +30,7 @@ public class GlideConfigModule extends AppGlideModule {
     @Override
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
 
-        diskCacheFolder = FileUtils.getDiskLruCacheDir(context,FusionCode.GLIDE_CACHE_LOCAPATH);
+        diskCacheFolder = FileUtils.getDiskLruCacheDir(context, FusionCode.GLIDE_CACHE_LOCAPATH);
 
 //        LogUtils.e("diskCacheFolder : "+diskCacheFolder.getAbsolutePath());
 
@@ -66,9 +66,9 @@ public class GlideConfigModule extends AppGlideModule {
                 .readTimeout(45, TimeUnit.SECONDS)
                 .writeTimeout(45, TimeUnit.SECONDS);
 
-        OkHttpUrlLoader.Factory factory=new OkHttpUrlLoader.Factory(client.build());
+        OkHttpUrlLoader.Factory factory = new OkHttpUrlLoader.Factory(client.build());
 
-          //替换组件，如网络请求组件
+        //替换组件，如网络请求组件
         registry.replace(GlideUrl.class, InputStream.class, factory);
 
     }

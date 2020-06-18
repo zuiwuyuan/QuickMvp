@@ -7,27 +7,11 @@ import com.njfu.yxcmc.BuildConfig;
 import androidx.annotation.NonNull;
 
 public final class RemoteApi {
-    private RemoteApi() {
-    }
-
-    private static String remoteToken = null;
     private static final Host MY_HOST = BuildConfig.DEBUG ? Host.DVPT : Host.PRDT;
-
     private static final String BASE_API_PATH = "/";
+    private static String remoteToken = null;
 
-    private enum Host {
-        PRDT(47, 104, 74, 169, 8080, false),
-        DVPT("www.wanandroid.com", true);
-
-        private String url;
-
-        Host(int a, int b, int c, int d, int p, boolean isHttps) {
-            this.url = "ht" + (isHttps ? "tps" : "tp") + "://" + a + "." + b + "." + c + "." + d + ":" + p + "/";//分段写，规避安全漏洞
-        }
-
-        Host(String hostName, boolean isHttps) {
-            this.url = "ht" + (isHttps ? "tps" : "tp") + "://" + hostName + "/";
-        }
+    private RemoteApi() {
     }
 
     /**
@@ -43,7 +27,6 @@ public final class RemoteApi {
             url = MY_HOST.url + url;
         return url;
     }
-
 
     /**
      * 获取主机地址
@@ -82,5 +65,20 @@ public final class RemoteApi {
 
     public static void setRemoteToken(String remoteToken) {
         RemoteApi.remoteToken = remoteToken;
+    }
+
+    private enum Host {
+        PRDT(47, 104, 74, 169, 8080, false),
+        DVPT("www.wanandroid.com", true);
+
+        private String url;
+
+        Host(int a, int b, int c, int d, int p, boolean isHttps) {
+            this.url = "ht" + (isHttps ? "tps" : "tp") + "://" + a + "." + b + "." + c + "." + d + ":" + p + "/";//分段写，规避安全漏洞
+        }
+
+        Host(String hostName, boolean isHttps) {
+            this.url = "ht" + (isHttps ? "tps" : "tp") + "://" + hostName + "/";
+        }
     }
 }

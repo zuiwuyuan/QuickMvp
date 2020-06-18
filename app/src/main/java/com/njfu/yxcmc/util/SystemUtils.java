@@ -8,8 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
 
-import com.apkfuns.logutils.LogUtils;
-import com.njfu.yxcmc.base.GloabApp;
+import com.njfu.yxcmc.base.GlobalApp;
 import com.njfu.yxcmc.common.CmssSharedPreferences;
 
 import java.io.BufferedReader;
@@ -29,7 +28,7 @@ public class SystemUtils {
      * 检查WIFI是否连接
      */
     public static boolean isWifiConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) GloabApp.getInstance().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) GlobalApp.getInstance().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiInfo = connectivityManager
                 .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         return wifiInfo != null;
@@ -39,7 +38,7 @@ public class SystemUtils {
      * 检查手机网络(4G/3G/2G)是否连接
      */
     public static boolean isMobileNetworkConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) GloabApp.getInstance().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) GlobalApp.getInstance().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobileNetworkInfo = connectivityManager
                 .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         return mobileNetworkInfo != null;
@@ -49,7 +48,7 @@ public class SystemUtils {
      * 检查是否有可用网络
      */
     public static boolean isNetworkConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) GloabApp.getInstance().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) GlobalApp.getInstance().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         return connectivityManager.getActiveNetworkInfo() != null;
     }
 
@@ -129,17 +128,14 @@ public class SystemUtils {
 
     public static String getDeviceId(Context mContext) {
 
-        String deviceId = GloabApp.getInstance().getPrefs().getString(CmssSharedPreferences.SpKeyEnum.AI_DEVICE_ID, "");
+        String deviceId = GlobalApp.getInstance().getPrefs().getString(CmssSharedPreferences.SpKeyEnum.AI_DEVICE_ID, "");
 
-        LogUtils.e("deviceId1 : " + deviceId);
         if (TextUtils.isEmpty(deviceId)) {
             deviceId = GetAndroidUniqueMark.getUniqueId(mContext);
         }
-        LogUtils.e("deviceId2 : " + deviceId);
         if (TextUtils.isEmpty(deviceId)) {
             deviceId = GetAndroidUniqueMark.getUUID(mContext);
         }
-        LogUtils.e("deviceId3 : " + deviceId);
         return deviceId;
     }
 }

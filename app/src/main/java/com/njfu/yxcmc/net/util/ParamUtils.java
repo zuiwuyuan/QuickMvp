@@ -4,7 +4,7 @@ import android.os.Build;
 import android.text.TextUtils;
 
 import com.njfu.yxcmc.BuildConfig;
-import com.njfu.yxcmc.base.GloabApp;
+import com.njfu.yxcmc.base.GlobalApp;
 import com.njfu.yxcmc.util.SystemUtils;
 
 import org.json.JSONException;
@@ -19,7 +19,7 @@ public class ParamUtils {
 
     public static JSONObject getJsonCommonParams() throws JSONException {
 
-        JSONObject param = GloabApp.getInstance().getGlobalField().getCommonJsonParams();
+        JSONObject param = GlobalApp.getInstance().getGlobalField().getCommonJsonParams();
         if (param != null) {
             return param;
         }
@@ -58,7 +58,7 @@ public class ParamUtils {
 
     public static Map<String, String> getMapCommonParams() {
 
-        Map<String, String> mapParams = GloabApp.getInstance().getGlobalField().getCommonMapParams();
+        Map<String, String> mapParams = GlobalApp.getInstance().getGlobalField().getCommonMapParams();
         if (mapParams != null) {
             return mapParams;
         }
@@ -93,7 +93,7 @@ public class ParamUtils {
         mapParams.put("ip", SystemUtils.getHostIP());
         mapParams.put("appVersion", BuildConfig.VERSION_NAME);// 应用版本号
 
-        GloabApp.getInstance().getGlobalField().setCommonMapParams(mapParams);
+        GlobalApp.getInstance().getGlobalField().setCommonMapParams(mapParams);
 
         return mapParams;
     }

@@ -3,7 +3,6 @@ package com.njfu.yxcmc.presenter;
 
 import android.app.Activity;
 
-import com.apkfuns.logutils.LogUtils;
 import com.njfu.yxcmc.base.BasePresenter;
 import com.njfu.yxcmc.bean.UserModel;
 import com.njfu.yxcmc.contract.LoginContract;

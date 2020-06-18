@@ -12,11 +12,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class BasePresenter<V extends BaseView> {
 
-    private CompositeDisposable compositeDisposable;
-
     protected V mView;
-
     protected APIService apiService = RetrofitClient.getInstance().getServiceRxCustomGson();
+    private CompositeDisposable compositeDisposable;
 
     public void addDisposable(Observable<?> observable, BaseSubscriber observer) {
         if (compositeDisposable == null) {

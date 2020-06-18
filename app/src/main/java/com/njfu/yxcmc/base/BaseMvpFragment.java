@@ -36,12 +36,12 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragm
                     false, "取消", "确定", new ThemeAlertDialog.OnAlertAction() {
                         @Override
                         public void onLeftClick() {
-                            GloabApp.getInstance().exitApp();
+                            GlobalApp.getInstance().exitApp();
                         }
 
                         @Override
                         public void onRightClick() {
-                            GloabApp.getInstance().restartApp();
+                            GlobalApp.getInstance().restartApp();
                         }
                     });
         } else {

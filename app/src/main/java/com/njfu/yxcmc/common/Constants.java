@@ -2,7 +2,7 @@ package com.njfu.yxcmc.common;
 
 import android.os.Environment;
 
-import com.njfu.yxcmc.base.GloabApp;
+import com.njfu.yxcmc.base.GlobalApp;
 
 import java.io.File;
 
@@ -10,7 +10,7 @@ public class Constants {
 
     //================= PATH ====================
 
-    public static final String PATH_DATA = GloabApp.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
+    public static final String PATH_DATA = GlobalApp.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
 
     public static final String PATH_CACHE = PATH_DATA + "/NetCache";
 

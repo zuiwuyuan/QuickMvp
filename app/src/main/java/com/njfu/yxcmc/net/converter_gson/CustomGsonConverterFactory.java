@@ -21,6 +21,12 @@ import retrofit2.Retrofit;
 
 public final class CustomGsonConverterFactory extends Converter.Factory {
 
+    private final Gson gson;
+
+    private CustomGsonConverterFactory(Gson gson) {
+        this.gson = gson;
+    }
+
     public static CustomGsonConverterFactory create() {
         return create(new Gson());
     }
@@ -31,12 +37,6 @@ public final class CustomGsonConverterFactory extends Converter.Factory {
             throw new NullPointerException("gson == null");
         }
         return new CustomGsonConverterFactory(gson);
-    }
-
-    private final Gson gson;
-
-    private CustomGsonConverterFactory(Gson gson) {
-        this.gson = gson;
     }
 
     @Override

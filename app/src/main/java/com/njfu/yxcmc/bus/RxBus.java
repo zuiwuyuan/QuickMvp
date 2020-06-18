@@ -14,13 +14,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxBus {
 
-    private Relay<Object> rxBus = null;
-
     private static RxBus instance;
-
-    private static class IRxBusHolder {
-        private static final RxBus INSTANCE = new RxBus();
-    }
+    private Relay<Object> rxBus = null;
 
     private RxBus() {
         rxBus = BehaviorRelay.create().toSerialized();
@@ -124,5 +119,9 @@ public class RxBus {
         if (disposable != null && !disposable.isDisposed()) {
             disposable.dispose();
         }
+    }
+
+    private static class IRxBusHolder {
+        private static final RxBus INSTANCE = new RxBus();
     }
 }

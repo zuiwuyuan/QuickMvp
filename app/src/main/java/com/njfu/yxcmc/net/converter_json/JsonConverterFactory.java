@@ -16,7 +16,7 @@ import retrofit2.Retrofit;
 public class JsonConverterFactory extends Converter.Factory {
 
     public static JsonConverterFactory create() {
-        return new JsonConverterFactory ();
+        return new JsonConverterFactory();
     }
 
     @Override

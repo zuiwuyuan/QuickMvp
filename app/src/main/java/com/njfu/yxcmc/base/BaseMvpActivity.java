@@ -45,12 +45,12 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
                     false, "取消", "确定", new ThemeAlertDialog.OnAlertAction() {
                         @Override
                         public void onLeftClick() {
-                            GloabApp.getInstance().exitApp();
+                            GlobalApp.getInstance().exitApp();
                         }
 
                         @Override
                         public void onRightClick() {
-                            GloabApp.getInstance().restartApp();
+                            GlobalApp.getInstance().restartApp();
                         }
                     });
         } else {

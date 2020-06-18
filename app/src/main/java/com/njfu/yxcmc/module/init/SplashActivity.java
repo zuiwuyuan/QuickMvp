@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.njfu.yxcmc.R;
 import com.njfu.yxcmc.base.BaseMvpActivity;
-import com.njfu.yxcmc.base.GloabApp;
+import com.njfu.yxcmc.base.GlobalApp;
 import com.njfu.yxcmc.contract.SplashContract;
 import com.njfu.yxcmc.module.login.LoginActivity;
 import com.njfu.yxcmc.presenter.SplashPresenter;
@@ -77,7 +77,7 @@ public class SplashActivity extends BaseMvpActivity<SplashPresenter> implements 
 
 //        LogUtils.e("smallestWidthDP : " + smallestWidthDP);
 
-        if (GloabApp.getInstance().getPrefs().getBoolean("IsFirstLaunchApp", true)) {
+        if (GlobalApp.getInstance().getPrefs().getBoolean("IsFirstLaunchApp", true)) {
             showPrivacyStatement();
         } else {
             checkAccessFilePermission();
@@ -116,7 +116,7 @@ public class SplashActivity extends BaseMvpActivity<SplashPresenter> implements 
             public void onConfirmBtnClick(AgreementDialog dialog) {
                 dialog.dismiss();
                 checkAccessFilePermission();
-                GloabApp.getInstance().getPrefs().saveBoolean("IsFirstLaunchApp", false);
+                GlobalApp.getInstance().getPrefs().saveBoolean("IsFirstLaunchApp", false);
             }
 
             @Override

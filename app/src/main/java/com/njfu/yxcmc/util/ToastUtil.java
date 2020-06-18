@@ -9,11 +9,11 @@ import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.IntDef;
-import androidx.annotation.StringRes;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.IntDef;
+import androidx.annotation.StringRes;
 
 
 public enum ToastUtil {
@@ -26,11 +26,6 @@ public enum ToastUtil {
      * Toast对象
      */
     private Toast toast = null;
-
-    @IntDef({Toast.LENGTH_SHORT, Toast.LENGTH_LONG})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface ToastDuration {
-    }
 
     /**
      * 显示Toast
@@ -82,5 +77,10 @@ public enum ToastUtil {
 
     public void showToast(Context context, String message) {
         showToast(context, message, Toast.LENGTH_SHORT);
+    }
+
+    @IntDef({Toast.LENGTH_SHORT, Toast.LENGTH_LONG})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface ToastDuration {
     }
 }

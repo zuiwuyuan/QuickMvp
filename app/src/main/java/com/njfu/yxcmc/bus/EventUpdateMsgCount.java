@@ -2,6 +2,7 @@ package com.njfu.yxcmc.bus;
 
 /**
  * 更新首页消息数量小红点
+ *
  * @param <T>
  */
 public class EventUpdateMsgCount<T> {

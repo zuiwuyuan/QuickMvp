@@ -21,11 +21,11 @@ import androidx.annotation.DrawableRes;
 public class CircleImageView extends androidx.appcompat.widget.AppCompatImageView {
 
 
+    private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
+    private static final int COLORDRAWABLE_DIMENSION = 2;
     private Bitmap mBitmap;
     private BitmapShader mBitmapShader;
     private Paint paint;
-    private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
-    private static final int COLORDRAWABLE_DIMENSION = 2;
 
     public CircleImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -34,17 +34,17 @@ public class CircleImageView extends androidx.appcompat.widget.AppCompatImageVie
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (mBitmap == null||mBitmapShader == null) {
+        if (mBitmap == null || mBitmapShader == null) {
             return;
         }
-        if(mBitmap.getHeight() == 0 || mBitmap.getWidth() == 0)
+        if (mBitmap.getHeight() == 0 || mBitmap.getWidth() == 0)
             return;
         updateBitmapShader();
         paint.setShader(mBitmapShader);
         canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth() / 2.0f, getHeight() / 2.0f), paint);
     }
 
-    private void init(){
+    private void init() {
         if (mBitmap == null) return;
         mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         paint = new Paint();
@@ -110,7 +110,7 @@ public class CircleImageView extends androidx.appcompat.widget.AppCompatImageVie
             return;
         int canvasSize = Math.min(getWidth(), getHeight());
         if (canvasSize == 0) return;
-        if( canvasSize!= mBitmap.getWidth() || canvasSize != mBitmap.getHeight()) {
+        if (canvasSize != mBitmap.getWidth() || canvasSize != mBitmap.getHeight()) {
             Matrix matrix = new Matrix();
             float scale = (float) canvasSize / (float) mBitmap.getWidth();
             matrix.setScale(scale, scale);

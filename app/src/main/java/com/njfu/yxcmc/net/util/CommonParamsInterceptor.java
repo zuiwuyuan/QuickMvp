@@ -6,8 +6,6 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.njfu.yxcmc.R;
-import com.njfu.yxcmc.cache.ACache;
 import com.njfu.yxcmc.util.SystemUtils;
 
 import java.io.IOException;

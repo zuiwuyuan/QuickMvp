@@ -12,11 +12,12 @@ import okhttp3.RequestBody;
 
 public class ParamsBuilder {
 
+    private static Gson gson;
+
     static {
         gson = new Gson();
     }
 
-    private static Gson gson;
     private Map<String, Object> map;
 
     public ParamsBuilder() {

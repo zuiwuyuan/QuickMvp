@@ -41,14 +41,6 @@ public class BaseException extends IOException {
     private String errorMsg;
     private int errorCode;
 
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public int getErrorCode() {
-        return errorCode;
-    }
-
     public BaseException(String errorMsg, Throwable cause) {
         super(errorMsg, cause);
         this.errorMsg = errorMsg;
@@ -63,5 +55,13 @@ public class BaseException extends IOException {
     public BaseException(String message, int errorCode) {
         this.errorCode = errorCode;
         this.errorMsg = message;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public int getErrorCode() {
+        return errorCode;
     }
 }

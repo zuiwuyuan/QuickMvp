@@ -26,25 +26,9 @@ public class RetrofitClient {
     private static final long KEEP_ALLIVE_TIME = 60000L;//保持连接时间
 
     private static volatile RetrofitClient instance;
-
-    private Retrofit mRetrofit, mRetrofitGson, mRetrofitRx, mRetrofitRxGson, mRetrofitRxCustomGson, mRetrofitRxJson;
-
-    private OkHttpClient okHttpClient;
-
     private static String authorization = "";
-
-    /**
-     * 设置Authorization,登录时后台返回
-     *
-     * @param authorization authorization
-     */
-    public static void setAuthorization(String authorization) {
-        RetrofitClient.authorization = authorization;
-    }
-
-    public static String getAuthorization() {
-        return authorization;
-    }
+    private Retrofit mRetrofit, mRetrofitGson, mRetrofitRx, mRetrofitRxGson, mRetrofitRxCustomGson, mRetrofitRxJson;
+    private OkHttpClient okHttpClient;
 
     private RetrofitClient() {
 
@@ -103,8 +87,17 @@ public class RetrofitClient {
                 .build();
     }
 
-    public OkHttpClient getOkHttpClient() {
-        return okHttpClient;
+    public static String getAuthorization() {
+        return authorization;
+    }
+
+    /**
+     * 设置Authorization,登录时后台返回
+     *
+     * @param authorization authorization
+     */
+    public static void setAuthorization(String authorization) {
+        RetrofitClient.authorization = authorization;
     }
 
     public static OkHttpClient getAndroidNetworkingClient() {
@@ -135,6 +128,10 @@ public class RetrofitClient {
             }
         }
         return instance;
+    }
+
+    public OkHttpClient getOkHttpClient() {
+        return okHttpClient;
     }
 
     /**
@@ -172,6 +169,30 @@ public class RetrofitClient {
         return interceptor;
     }
 
+    public APIService getService() {
+        return mRetrofit.create(APIService.class);
+    }
+
+    public APIService getServiceGson() {
+        return mRetrofitGson.create(APIService.class);
+    }
+
+    public APIService getServiceRx() {
+        return mRetrofitRx.create(APIService.class);
+    }
+
+    public APIService getServiceRxCustomGson() {
+        return mRetrofitRxCustomGson.create(APIService.class);
+    }
+
+    public APIService getServiceRxGson() {
+        return mRetrofitRxGson.create(APIService.class);
+    }
+
+    public APIService getServiceRxJson() {
+        return mRetrofitRxJson.create(APIService.class);
+    }
+
     class RetryIntercepter implements Interceptor {
 
         public int maxRetryCount;
@@ -204,29 +225,5 @@ public class RetrofitClient {
             }
             return response;
         }
-    }
-
-    public APIService getService() {
-        return mRetrofit.create(APIService.class);
-    }
-
-    public APIService getServiceGson() {
-        return mRetrofitGson.create(APIService.class);
-    }
-
-    public APIService getServiceRx() {
-        return mRetrofitRx.create(APIService.class);
-    }
-
-    public APIService getServiceRxCustomGson() {
-        return mRetrofitRxCustomGson.create(APIService.class);
-    }
-
-    public APIService getServiceRxGson() {
-        return mRetrofitRxGson.create(APIService.class);
-    }
-
-    public APIService getServiceRxJson() {
-        return mRetrofitRxJson.create(APIService.class);
     }
 }

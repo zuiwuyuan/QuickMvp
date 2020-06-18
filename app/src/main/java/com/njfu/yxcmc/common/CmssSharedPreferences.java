@@ -13,8 +13,8 @@ public class CmssSharedPreferences {
     private static String sharedPreferencesName = FusionCode.SHARED_PREFERENCE_NAME;
 
     private static CmssSharedPreferences mInstance = null;
-    private SharedPreferences mSharedPreferences = null;
     private final boolean isEncrypted = false;
+    private SharedPreferences mSharedPreferences = null;
 
     private CmssSharedPreferences(Context context) {
         synchronized (CmssSharedPreferences.class) {
@@ -69,6 +69,7 @@ public class CmssSharedPreferences {
     public void saveBoolean(String key, boolean value) {
         mSharedPreferences.edit().putBoolean(encryptString(key), value).commit();
     }
+
     public void removeBoolean(String key) {
         mSharedPreferences.edit().remove(encryptString(key)).commit();
     }

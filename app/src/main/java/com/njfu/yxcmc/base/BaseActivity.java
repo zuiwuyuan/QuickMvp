@@ -5,10 +5,10 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.njfu.yxcmc.R;
 import com.njfu.yxcmc.util.ToastUtil;
 import com.njfu.yxcmc.widget.dialog.CustomProgressDialog;
-import com.gyf.immersionbar.ImmersionBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void toastMsg(String msg) {
-        ToastUtil.INSTANCE.showToast(this,msg);
+        ToastUtil.INSTANCE.showToast(this, msg);
     }
 
     public void toastMsg(int msgId) {

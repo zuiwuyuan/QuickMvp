@@ -11,99 +11,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.apkfuns.logutils.LogUtils;
+import com.gyf.immersionbar.ImmersionBar;
 import com.njfu.yxcmc.R;
 import com.njfu.yxcmc.util.ToastUtil;
 import com.njfu.yxcmc.widget.dialog.CustomProgressDialog;
-import com.gyf.immersionbar.ImmersionBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment implements View.OnTouchListener {
 
     protected Unbinder unBinder;
-
+    protected View view = null;
     private Dialog mLoadingDialog = null;
-
-    protected  View view = null;
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
-        if (view == null) {
-            view = inflater.inflate(this.getLayoutId(), container, false);
-        }
-        else {
-            //  二次加载删除上一个子view
-            ViewGroup viewGroup = (ViewGroup) view.getParent();
-            if (viewGroup != null) {
-                viewGroup.removeView(view);
-            }
-        }
-
-        unBinder = ButterKnife.bind(this, view);
-        initImmersionBar();
-        initView();
-        initData();
-        initListener();
-
-        return view;
-    }
-
-    protected void initImmersionBar() {
-        ImmersionBar
-                .with(this)
-                .transparentStatusBar()
-                .init();
-    }
-
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        // 拦截触摸事件，防止泄露下去
-        view.setOnTouchListener(this);
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return true;
-    }
-
-    @Override
-    public void onDestroyView() {
-
-        try {
-            if (unBinder!=null){
-                unBinder.unbind();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        super.onDestroyView();
-
-    }
-
-    protected abstract int getLayoutId();
-
-    protected abstract void initView();
-
-    protected abstract void initData();
-
-    protected void initListener() {
-    }
-
-    protected void toastMsg(String msg) {
-        ToastUtil.INSTANCE.showToast(getActivity(), msg);
-    }
-
-    protected void toastMsg(int msgId) {
-        ToastUtil.INSTANCE.showToast(getActivity(), getResources().getString(msgId));
-    }
 
     /**
      * 跳转到其他界面
@@ -124,17 +47,6 @@ public abstract class BaseFragment extends Fragment implements View.OnTouchListe
         if (isFinish) {
             ((Activity) context).finish();
         }
-    }
-
-    /**
-     * 生成数据Bundle
-     *
-     * @param title       页面标题
-     * @param aimFragment 目标Fragment
-     * @return Bundle实例
-     */
-    protected Bundle getBundleToAimPage(String title, Class<? extends BaseFragment> aimFragment) {
-        return getBundleToAimPage(title, aimFragment, null);
     }
 
     /**
@@ -165,6 +77,89 @@ public abstract class BaseFragment extends Fragment implements View.OnTouchListe
         if (subBundle != null)
             bundle.putBundle("DataToAimFragment", subBundle);
         return bundle;
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
+        if (view == null) {
+            view = inflater.inflate(this.getLayoutId(), container, false);
+        } else {
+            //  二次加载删除上一个子view
+            ViewGroup viewGroup = (ViewGroup) view.getParent();
+            if (viewGroup != null) {
+                viewGroup.removeView(view);
+            }
+        }
+
+        unBinder = ButterKnife.bind(this, view);
+        initImmersionBar();
+        initView();
+        initData();
+        initListener();
+
+        return view;
+    }
+
+    protected void initImmersionBar() {
+        ImmersionBar
+                .with(this)
+                .transparentStatusBar()
+                .init();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        // 拦截触摸事件，防止泄露下去
+        view.setOnTouchListener(this);
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return true;
+    }
+
+    @Override
+    public void onDestroyView() {
+
+        try {
+            if (unBinder != null) {
+                unBinder.unbind();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        super.onDestroyView();
+
+    }
+
+    protected abstract int getLayoutId();
+
+    protected abstract void initView();
+
+    protected abstract void initData();
+
+    protected void initListener() {
+    }
+
+    protected void toastMsg(String msg) {
+        ToastUtil.INSTANCE.showToast(getActivity(), msg);
+    }
+
+    protected void toastMsg(int msgId) {
+        ToastUtil.INSTANCE.showToast(getActivity(), getResources().getString(msgId));
+    }
+
+    /**
+     * 生成数据Bundle
+     *
+     * @param title       页面标题
+     * @param aimFragment 目标Fragment
+     * @return Bundle实例
+     */
+    protected Bundle getBundleToAimPage(String title, Class<? extends BaseFragment> aimFragment) {
+        return getBundleToAimPage(title, aimFragment, null);
     }
 
     public boolean onBackPressed() {
