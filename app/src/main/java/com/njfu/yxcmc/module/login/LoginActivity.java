@@ -1,5 +1,6 @@
 package com.njfu.yxcmc.module.login;
 
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -15,6 +16,7 @@ import com.njfu.yxcmc.bean.UserModel;
 import com.njfu.yxcmc.common.CmssSharedPreferences;
 import com.njfu.yxcmc.common.GlobalField;
 import com.njfu.yxcmc.contract.LoginContract;
+import com.njfu.yxcmc.module.image.ImageSelectActivity;
 import com.njfu.yxcmc.presenter.LoginPresenter;
 
 import butterknife.BindView;
@@ -125,6 +127,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     @Override
     public void onLoginSuccess(UserModel userModel) {
         toastMsg("登录成功");
+        startActivity(new Intent(this, ImageSelectActivity.class));
     }
 
 }

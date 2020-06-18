@@ -40,6 +40,10 @@
             android:name=".module.login.LoginActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".module.image.ImageSelectActivity"
+            android:screenOrientation="portrait" />
+
         <!--适配华为（huawei）刘海屏-->
         <meta-data
             android:name="android.notch_support"
