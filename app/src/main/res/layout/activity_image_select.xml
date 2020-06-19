@@ -10,8 +10,8 @@
         android:id="@+id/ivPhoto"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="100dp"
-        android:scaleType="fitXY" />
+        android:layout_marginTop="50dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/tvBtnTakePhoto"
@@ -25,16 +25,11 @@
         android:textColor="#FFF"
         android:textSize="@dimen/sp_18" />
 
-    <View
-        android:layout_width="@dimen/dp_300"
-        android:layout_height="@dimen/dp_1"
-        android:background="#DBDFE1" />
-
     <TextView
         android:id="@+id/tvBtnSelectPhoto"
         android:layout_width="@dimen/dp_300"
         android:layout_height="@dimen/dp_40"
-        android:layout_marginTop="@dimen/page_title_height"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@drawable/selector_theme_big_btn_bg"
         android:clickable="true"
         android:gravity="center"
@@ -42,4 +37,27 @@
         android:textColor="#FFF"
         android:textSize="@dimen/sp_18" />
 
+    <TextView
+        android:id="@+id/tvBtnTakeCropPhoto"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/selector_theme_big_btn_bg"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="拍照并裁剪"
+        android:textColor="#FFF"
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:id="@+id/tvBtnSelectCropPhoto"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/selector_theme_big_btn_bg"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="相册并裁剪"
+        android:textColor="#FFF"
+        android:textSize="@dimen/sp_18" />
 </LinearLayout>

@@ -46,18 +46,25 @@ import butterknife.OnClick;
  */
 public class ImageSelectActivity extends BaseActivity {
 
+    // 打开系统设置，应用详情
     private static final int ACTIVITY_REQUEST_CODE_TO_SYSTEM_SETTING = 0x00000001;
     // 申请相机权限的requestCode
     private static final int PERMISSION_CAMERA_REQUEST_CODE = 0x00000002;
 
     private static final int REQUEST_CODE_CAMERA = 0x00000011;
     private static final int REQUEST_CODE_OPEN_PHOTO_ALBUM = 0x00000012;
+    private static final int REQUEST_CODE_CROP_PHOTO = 0x00000013;
+
+    private boolean isCrop = false;
 
     //用于保存拍照图片的uri
     private Uri mCameraUri;
 
     // 用于保存图片的文件路径，Android 10以下使用图片路径访问图片
     private String mCameraImagePath;
+
+    // 用于暂存剪裁的图片
+    private File mCropImageFile;
 
     // 是否是Android 10以上手机
     private boolean isAndroidQ = Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q;
@@ -79,15 +86,24 @@ public class ImageSelectActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tvBtnTakePhoto, R.id.tvBtnSelectPhoto})
+    @OnClick({R.id.tvBtnTakePhoto, R.id.tvBtnSelectPhoto, R.id.tvBtnTakeCropPhoto, R.id.tvBtnSelectCropPhoto})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvBtnTakePhoto:
+                isCrop = false;
                 checkCameraPermission();
                 break;
             case R.id.tvBtnSelectPhoto:
+                isCrop = false;
                 photoFromGallery();
-
+                break;
+            case R.id.tvBtnTakeCropPhoto:
+                isCrop = true;
+                checkCameraPermission();
+                break;
+            case R.id.tvBtnSelectCropPhoto:
+                isCrop = true;
+                photoFromGallery();
                 break;
         }
     }
@@ -244,41 +260,79 @@ public class ImageSelectActivity extends BaseActivity {
         }
     }
 
+    private void cropPhoto(String imagePath) {
+        mCropImageFile = getmCropImageFile();
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(getImageContentUri(new File(imagePath)), "image/*");
+        intent.putExtra("crop", true);
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", 500);
+        intent.putExtra("outputY", 500);
+        intent.putExtra("scale", true);
+        intent.putExtra("return-data", false);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mCropImageFile));
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intent.putExtra("noFaceDetection", true);
+        startActivityForResult(intent, REQUEST_CODE_CROP_PHOTO);
+    }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CODE_CAMERA) {
-            if (resultCode == RESULT_OK) {
-                LogUtils.e("mCameraUri ： " + mCameraUri);
-                LogUtils.e("mCameraImagePath ： " + mCameraImagePath);
-                LogUtils.e("isAndroidQ ： " + isAndroidQ);
+        switch (requestCode) {
+            case REQUEST_CODE_CAMERA:
+                if (resultCode == RESULT_OK) {
+                    mCameraImagePath = handleImage(mCameraUri);
 
-                if (isAndroidQ) {
-                    ivPhoto.setImageURI(mCameraUri);
-                } else {
-                    ivPhoto.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
+                    LogUtils.e("mCameraUri ： " + mCameraUri);
+                    LogUtils.e("mCameraImagePath ： " + mCameraImagePath);
+                    LogUtils.e("isAndroidQ ： " + isAndroidQ);
+
+                    if (isCrop) {
+                        cropPhoto(mCameraImagePath);
+                    } else {
+                        if (isAndroidQ) {
+                            ivPhoto.setImageURI(mCameraUri);
+                        } else {
+                            ivPhoto.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
+                        }
+                    }
+
                 }
-                ivPhoto.setImageURI(mCameraUri);
-            }
-        } else if (requestCode == REQUEST_CODE_OPEN_PHOTO_ALBUM) {
-            if (resultCode == RESULT_OK) {
-                mCameraUri = data.getData();
-                mCameraImagePath = handleImage(data);
+                break;
 
-                LogUtils.e("mCameraUri ： " + mCameraUri);
-                LogUtils.e("mCameraImagePath ： " + mCameraImagePath);
-                LogUtils.e("isAndroidQ ： " + isAndroidQ);
+            case REQUEST_CODE_OPEN_PHOTO_ALBUM:
+                if (resultCode == RESULT_OK) {
+                    mCameraUri = data.getData();
+                    mCameraImagePath = handleImage(data.getData());
 
-                if (isAndroidQ) {
-                    ivPhoto.setImageURI(mCameraUri);
-                } else {
-                    ivPhoto.setImageBitmap(getBitmapFromUri(this, mCameraUri));
+                    LogUtils.e("mCameraUri ： " + mCameraUri);
+                    LogUtils.e("mCameraImagePath ： " + mCameraImagePath);
+                    LogUtils.e("isAndroidQ ： " + isAndroidQ);
+
+                    if (isCrop) {
+                        cropPhoto(mCameraImagePath);
+                    } else {
+                        if (isAndroidQ) {
+                            ivPhoto.setImageURI(mCameraUri);
+                        } else {
+                            ivPhoto.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
+                        }
+                    }
                 }
-            }
+                break;
+            case REQUEST_CODE_CROP_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    LogUtils.e("mCropImagePath : " + mCropImageFile.getAbsolutePath());
+                    ivPhoto.setImageURI(Uri.fromFile(mCropImageFile));
+                } else {
+                    Toast.makeText(this, "截图失败", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
+
     }
 
     /**
@@ -295,7 +349,7 @@ public class ImageSelectActivity extends BaseActivity {
     }
 
     /**
-     * 创建保存图片的文件
+     * 创建保存图片的文件(拍照的图片要长期保存)
      */
     private File createImageFile() throws IOException {
         String imageName = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
@@ -310,8 +364,26 @@ public class ImageSelectActivity extends BaseActivity {
         return tempFile;
     }
 
-    private String handleImage(Intent data) {
-        Uri uri = data.getData();
+    /**
+     * 获取裁剪的图片保存地址（裁剪的图片放到缓存中，及时清理）
+     */
+    private File getmCropImageFile() {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            //File file = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"temp.jpg");
+            File file = new File(getExternalCacheDir(), System.currentTimeMillis() + ".jpg");
+            return file;
+        }
+        return null;
+    }
+
+    /**
+     * 把从相册获取到的数据信息，转为图片地址
+     *
+     * @param uri 从相册获取到的数据
+     * @return
+     */
+    private String handleImage(Uri uri) {
+
         String imagePath = null;
         if (Build.VERSION.SDK_INT >= 19) {
             if (DocumentsContract.isDocumentUri(this, uri)) {
@@ -346,8 +418,14 @@ public class ImageSelectActivity extends BaseActivity {
         return path;
     }
 
-    // 通过uri加载图片
-    public Bitmap getBitmapFromUri(Context context, Uri uri) {
+    /**
+     * 通过uri加载图片
+     *
+     * @param context
+     * @param uri
+     * @return
+     */
+    private Bitmap getBitmapFromUri(Context context, Uri uri) {
         try {
             ParcelFileDescriptor parcelFileDescriptor =
                     context.getContentResolver().openFileDescriptor(uri, "r");
@@ -361,20 +439,31 @@ public class ImageSelectActivity extends BaseActivity {
         return null;
     }
 
-    public Uri getImageContentUri(Context context, String path) {
-        Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                new String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.DATA + "=? ",
-                new String[]{path}, null);
+    /**
+     * 把fileUri转换成ContentUri
+     *
+     * @param imageFile
+     * @return
+     */
+    private Uri getImageContentUri(File imageFile) {
+        String filePath = imageFile.getAbsolutePath();
+        Cursor cursor = getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[]{MediaStore.Images.Media._ID},
+                MediaStore.Images.Media.DATA + "=? ",
+                new String[]{filePath}, null);
+
         if (cursor != null && cursor.moveToFirst()) {
-            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
+            int id = cursor.getInt(cursor
+                    .getColumnIndex(MediaStore.MediaColumns._ID));
             Uri baseUri = Uri.parse("content://media/external/images/media");
             return Uri.withAppendedPath(baseUri, "" + id);
         } else {
-            // 如果图片不在手机的共享图片数据库，就先把它插入。
-            if (new File(path).exists()) {
+            if (imageFile.exists()) {
                 ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.DATA, path);
-                return context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                values.put(MediaStore.Images.Media.DATA, filePath);
+                return getContentResolver().insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
             } else {
                 return null;
             }
