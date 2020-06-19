@@ -127,6 +127,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     @Override
     public void onLoginSuccess(UserModel userModel) {
         toastMsg("登录成功");
+        this.finish();
         startActivity(new Intent(this, ImageSelectActivity.class));
     }
 

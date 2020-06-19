@@ -108,6 +108,7 @@ dependencies {
     implementation rootProject.ext.dependencies["immersionbar"]
     implementation rootProject.ext.dependencies["immersionbar-components"]
 
+    implementation 'com.yanzhenjie:permission:2.0.3'
     implementation rootProject.ext.dependencies["material-dialogs"]
     implementation rootProject.ext.dependencies["adapterhelper"]
     implementation rootProject.ext.dependencies["logger"]
