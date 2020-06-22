@@ -1,4 +1,4 @@
-package com.njfu.yxcmc.net.converter_gson;
+package com.njfu.yxcmc.net.converter.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;

@@ -1,4 +1,4 @@
-package com.njfu.yxcmc.net.converter_json;
+package com.njfu.yxcmc.net.converter.json;
 
 import android.text.TextUtils;
 
@@ -25,7 +25,7 @@ final class JsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
             JSONObject dataObj = new JSONObject(jsonString);
             int resultCode = dataObj.optInt("resultCode", 0);
             if (resultCode != 0) {
-                String resultMessage = dataObj.getString("resultMessage");
+                String resultMessage = dataObj.optString("resultMessage","未知错误");
                 if (TextUtils.isEmpty(resultMessage)) {
                     resultMessage = BaseException.OTHER_MSG;
                 }

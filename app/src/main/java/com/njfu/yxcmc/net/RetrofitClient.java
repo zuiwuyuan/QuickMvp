@@ -1,7 +1,7 @@
 package com.njfu.yxcmc.net;
 
-import com.njfu.yxcmc.net.converter_gson.CustomGsonConverterFactory;
-import com.njfu.yxcmc.net.converter_json.JsonConverterFactory;
+import com.njfu.yxcmc.net.converter.gson.CustomGsonConverterFactory;
+import com.njfu.yxcmc.net.converter.json.JsonConverterFactory;
 import com.njfu.yxcmc.net.util.HttpLogger;
 
 import java.io.IOException;

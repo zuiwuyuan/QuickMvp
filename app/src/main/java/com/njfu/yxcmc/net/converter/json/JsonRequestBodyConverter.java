@@ -1,4 +1,4 @@
-package com.njfu.yxcmc.net.converter_json;
+package com.njfu.yxcmc.net.converter.json;
 
 import java.io.IOException;
 

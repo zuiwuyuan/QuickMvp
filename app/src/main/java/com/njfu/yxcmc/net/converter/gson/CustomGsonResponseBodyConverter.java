@@ -1,4 +1,4 @@
-package com.njfu.yxcmc.net.converter_gson;
+package com.njfu.yxcmc.net.converter.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
@@ -35,7 +35,7 @@ public class CustomGsonResponseBodyConverter<T> implements Converter<ResponseBod
             JSONObject object = new JSONObject(jsonString);
             int errorCode = object.getInt("errorCode");
             if (errorCode != 0) {
-                String errorMsg = object.getString("errorMsg");
+                String errorMsg = object.optString("errorMsg","未知错误");
                 //异常处理
                 throw new BaseException(errorMsg, errorCode);
             }

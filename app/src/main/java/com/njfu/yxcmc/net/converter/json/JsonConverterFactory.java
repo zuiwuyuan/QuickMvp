@@ -1,7 +1,4 @@
-package com.njfu.yxcmc.net.converter_json;
-
-/*import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.ResponseBody;*/
+package com.njfu.yxcmc.net.converter.json;
 
 import org.json.JSONObject;
 
