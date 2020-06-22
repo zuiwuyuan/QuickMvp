@@ -247,11 +247,11 @@ public class ImageSelectActivity extends BaseActivity {
     private void photoFromGallery() {
         try {
             Intent intent = null;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            } else {
-                intent = new Intent(Intent.ACTION_PICK);
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//                intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+//            } else {
+            intent = new Intent(Intent.ACTION_PICK);
+//            }
             intent.setType("image/*");
             startActivityForResult(intent, REQUEST_CODE_OPEN_PHOTO_ALBUM);
         } catch (ActivityNotFoundException e) {
@@ -261,6 +261,7 @@ public class ImageSelectActivity extends BaseActivity {
     }
 
     private void cropPhoto(String imagePath) {
+
         mCropImageFile = getmCropImageFile();
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(getImageContentUri(new File(imagePath)), "image/*");
@@ -284,7 +285,9 @@ public class ImageSelectActivity extends BaseActivity {
         switch (requestCode) {
             case REQUEST_CODE_CAMERA:
                 if (resultCode == RESULT_OK) {
-                    mCameraImagePath = handleImage(mCameraUri);
+                    if (isAndroidQ) {
+                        mCameraImagePath = handleImage(mCameraUri);
+                    }
 
                     LogUtils.e("mCameraUri ： " + mCameraUri);
                     LogUtils.e("mCameraImagePath ： " + mCameraImagePath);
@@ -306,6 +309,7 @@ public class ImageSelectActivity extends BaseActivity {
             case REQUEST_CODE_OPEN_PHOTO_ALBUM:
                 if (resultCode == RESULT_OK) {
                     mCameraUri = data.getData();
+
                     mCameraImagePath = handleImage(data.getData());
 
                     LogUtils.e("mCameraUri ： " + mCameraUri);
@@ -354,6 +358,7 @@ public class ImageSelectActivity extends BaseActivity {
     private File createImageFile() throws IOException {
         String imageName = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//        File storageDir = new File(FileUtils.getSDPath()+FusionCode.IMAGES_LOCALPATH);
         if (!storageDir.exists()) {
             storageDir.mkdir();
         }
@@ -385,6 +390,9 @@ public class ImageSelectActivity extends BaseActivity {
     private String handleImage(Uri uri) {
 
         String imagePath = null;
+        if (uri == null) {
+            return null;
+        }
         if (Build.VERSION.SDK_INT >= 19) {
             if (DocumentsContract.isDocumentUri(this, uri)) {
                 String docId = DocumentsContract.getDocumentId(uri);
@@ -396,8 +404,14 @@ public class ImageSelectActivity extends BaseActivity {
                     Uri contentUri = ContentUris.withAppendedId(Uri.parse("" +
                             "content://downloads/public_downloads"), Long.valueOf(docId));
                     imagePath = getImagePath(contentUri, null);
+                } else if ("content".equals(uri.getScheme())) {
+                    LogUtils.e(uri.getScheme());
+                    LogUtils.e(uri.getHost());
+                    imagePath = getImagePath(uri, null);
                 }
             } else if ("content".equals(uri.getScheme())) {
+                LogUtils.e(uri.getScheme());
+                LogUtils.e(uri.getHost());
                 imagePath = getImagePath(uri, null);
             }
         } else {

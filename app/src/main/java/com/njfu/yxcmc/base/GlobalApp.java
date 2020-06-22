@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import com.androidnetworking.AndroidNetworking;
 import com.apkfuns.logutils.LogUtils;
 import com.njfu.yxcmc.common.CmssSharedPreferences;
+import com.njfu.yxcmc.common.CrashHandler;
 import com.njfu.yxcmc.common.GlobalField;
 import com.njfu.yxcmc.net.RetrofitClient;
 
@@ -33,9 +34,13 @@ public class GlobalApp extends Application {
 
         mContext = getApplicationContext();
 
-//        LeakCanary.install(this);
-        // Adding an Network Interceptor for Debugging purpose :
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(this);
 
+//        LeakCanary.install(this);
+
+        // Adding an Network Interceptor for Debugging purpose :
+        // 部分功能（上传下载等）使用此开源库，更便捷
         AndroidNetworking.initialize(mContext, RetrofitClient.getAndroidNetworkingClient());
 
         mGlobalField = new GlobalField();

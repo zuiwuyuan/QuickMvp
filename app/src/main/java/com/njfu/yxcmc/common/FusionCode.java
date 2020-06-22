@@ -12,13 +12,13 @@ public class FusionCode {
 
     public final static String AUTOUPDATE_FILENAME = "MobileBI_update.apk";
 
-    // 图片下载相关
+    // 图片相关
     public final static String IMAGES_LOCALPATH = FILE_LOCALPATH + "Images/";
 
     //浮动导航说明图
     public final static String GUIDE_LOCALPATH = FILE_LOCALPATH + "Guide/";
 
-    // 报表大小类缓存文件名
+    // Glide图片缓存
     public final static String GLIDE_CACHE_LOCAPATH = "Glide/";
 
     // 文件下载相关
