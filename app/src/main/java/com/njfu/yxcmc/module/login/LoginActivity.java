@@ -17,6 +17,7 @@ import com.njfu.yxcmc.common.CmssSharedPreferences;
 import com.njfu.yxcmc.common.GlobalField;
 import com.njfu.yxcmc.contract.LoginContract;
 import com.njfu.yxcmc.module.image.ImageSelectActivity;
+import com.njfu.yxcmc.module.image.WeChatSelectImgsActivity;
 import com.njfu.yxcmc.presenter.LoginPresenter;
 
 import butterknife.BindView;
@@ -128,7 +129,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     public void onLoginSuccess(UserModel userModel) {
         toastMsg("登录成功");
         this.finish();
-        startActivity(new Intent(this, ImageSelectActivity.class));
+        startActivity(new Intent(this, WeChatSelectImgsActivity.class));
+//        startActivity(new Intent(this, ImageSelectActivity.class));
     }
 
 }

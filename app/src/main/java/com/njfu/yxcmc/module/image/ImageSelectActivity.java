@@ -73,7 +73,7 @@ public class ImageSelectActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_image_select;
+        return R.layout.activity_image_selector;
     }
 
     @Override

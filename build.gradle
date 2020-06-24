@@ -5,12 +5,13 @@ buildscript {
     repositories {
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven{ url 'https://maven.aliyun.com/repository/jcenter'}
+        maven { url 'https://jitpack.io' }
         google()
 
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:4.0.0'
     }
 }
 

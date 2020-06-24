@@ -68,6 +68,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(path: ':imageselector')
+
     implementation rootProject.ext.dependencies["appcompat"]
     implementation rootProject.ext.dependencies["constraintlayout"]
 
@@ -108,10 +110,13 @@ dependencies {
     implementation rootProject.ext.dependencies["immersionbar"]
     implementation rootProject.ext.dependencies["immersionbar-components"]
 
-    implementation 'com.yanzhenjie:permission:2.0.3'
     implementation rootProject.ext.dependencies["material-dialogs"]
     implementation rootProject.ext.dependencies["adapterhelper"]
     implementation rootProject.ext.dependencies["logger"]
+
+    implementation 'com.yanzhenjie:permission:2.0.3'
+//    implementation 'com.github.donkingliang:ImageSelector:2.2.0'
+
 //    implementation rootProject.ext.dependencies["multidex"]
 
 //    implementation rootProject.ext.dependencies["smartrefresh"]

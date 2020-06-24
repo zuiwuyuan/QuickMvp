@@ -44,6 +44,22 @@
             android:name=".module.image.ImageSelectActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".module.image.WeChatSelectImgsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.donkingliang.imageselector.ImageSelectorActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.donkingliang.imageselector.PreviewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.donkingliang.imageselector.ClipImageActivity"
+            android:screenOrientation="portrait" />
+
         <!--适配华为（huawei）刘海屏-->
         <meta-data
             android:name="android.notch_support"
